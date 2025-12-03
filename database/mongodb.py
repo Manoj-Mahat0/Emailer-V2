@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 from pymongo.errors import ConnectionFailure, ServerSelectionTimeoutError
-from config import Config
+from config import config
 import streamlit as st
 
 class MongoDB:
@@ -20,12 +20,12 @@ class MongoDB:
         if self._client is None:
             try:
                 self._client = MongoClient(
-                    Config.MONGODB_URI,
+                    config.MONGODB_URI,
                     serverSelectionTimeoutMS=5000
                 )
                 # Test the connection
                 self._client.admin.command('ping')
-                self._db = self._client[Config.MONGODB_DB_NAME]
+                self._db = self._client[config.MONGODB_DB_NAME]
                 return True
             except (ConnectionFailure, ServerSelectionTimeoutError) as e:
                 st.error(f"Failed to connect to MongoDB: {str(e)}")
