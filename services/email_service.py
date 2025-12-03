@@ -6,17 +6,17 @@ from email import encoders
 import time
 from typing import Dict, List, Optional
 import streamlit as st
-from config import config
+from config import Config
 
 class EmailService:
     """Gmail SMTP email service"""
     
     def __init__(self):
-        self.smtp_server = config.SMTP_SERVER
-        self.smtp_port = config.SMTP_PORT
-        self.email = config.GMAIL_EMAIL
-        self.password = config.GMAIL_APP_PASSWORD
-        self.rate_limit = config.RATE_LIMIT_EMAILS_PER_MINUTE
+        self.smtp_server = Config.SMTP_SERVER
+        self.smtp_port = Config.SMTP_PORT
+        self.email = Config.GMAIL_EMAIL
+        self.password = Config.GMAIL_APP_PASSWORD
+        self.rate_limit = Config.RATE_LIMIT_EMAILS_PER_MINUTE
     
     def _create_smtp_connection(self):
         """Create and return SMTP connection"""

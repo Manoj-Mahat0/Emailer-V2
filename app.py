@@ -1,12 +1,12 @@
 import streamlit as st
-from config import config
+from config import Config
 from database import mongodb
 from services import TemplateService
 import sys
 
 # Page configuration
 st.set_page_config(
-    page_title=config.APP_TITLE,
+    page_title=Config.APP_TITLE,
     page_icon="📧",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -56,7 +56,7 @@ def initialize_app():
     """Initialize application - connect to DB and setup templates"""
     try:
         # Validate configuration
-        config.validate()
+        Config.validate()
         
         # Connect to MongoDB
         if 'db_connected' not in st.session_state:
@@ -92,8 +92,8 @@ def show_sidebar():
         
         st.markdown("---")
         st.markdown("#### Settings")
-        st.markdown(f"**Email:** {config.GMAIL_EMAIL}")
-        st.markdown(f"**Rate Limit:** {config.RATE_LIMIT_EMAILS_PER_MINUTE}/min")
+        st.markdown(f"**Email:** {Config.GMAIL_EMAIL}")
+        st.markdown(f"**Rate Limit:** {Config.RATE_LIMIT_EMAILS_PER_MINUTE}/min")
         
         return page
 
